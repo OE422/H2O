@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,12 @@
 		784BF98E23CE401F0064DF30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 784BF98C23CE401F0064DF30 /* Main.storyboard */; };
 		784BF99023CE40220064DF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784BF98F23CE40220064DF30 /* Assets.xcassets */; };
 		784BF99323CE40220064DF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 784BF99123CE40220064DF30 /* LaunchScreen.storyboard */; };
+		78D5535623CF926300009ED1 /* adjustGoals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D5535523CF926300009ED1 /* adjustGoals.swift */; };
+		F22A4774C9E146BE475AC688 /* Pods_H2O.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134B61F6A269EA69FBB0C60A /* Pods_H2O.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		134B61F6A269EA69FBB0C60A /* Pods_H2O.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H2O.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		784BF98323CE401F0064DF30 /* H2O.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = H2O.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		784BF98623CE401F0064DF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		784BF98823CE401F0064DF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,9 @@
 		784BF98F23CE40220064DF30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		784BF99223CE40220064DF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		784BF99423CE40220064DF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78D5535523CF926300009ED1 /* adjustGoals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adjustGoals.swift; sourceTree = "<group>"; };
+		F0E30678B76C48A200D50C14 /* Pods-H2O.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H2O.debug.xcconfig"; path = "Target Support Files/Pods-H2O/Pods-H2O.debug.xcconfig"; sourceTree = "<group>"; };
+		FFC2A523395FF993A7BBB6EB /* Pods-H2O.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H2O.release.xcconfig"; path = "Target Support Files/Pods-H2O/Pods-H2O.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F22A4774C9E146BE475AC688 /* Pods_H2O.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		718C467249C2C749BAB93975 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0E30678B76C48A200D50C14 /* Pods-H2O.debug.xcconfig */,
+				FFC2A523395FF993A7BBB6EB /* Pods-H2O.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		784BF97A23CE401F0064DF30 = {
 			isa = PBXGroup;
 			children = (
 				784BF98523CE401F0064DF30 /* H2O */,
 				784BF98423CE401F0064DF30 /* Products */,
+				718C467249C2C749BAB93975 /* Pods */,
+				EA6905F0CCF6701734A2B909 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,12 +77,21 @@
 				784BF98623CE401F0064DF30 /* AppDelegate.swift */,
 				784BF98823CE401F0064DF30 /* SceneDelegate.swift */,
 				784BF98A23CE401F0064DF30 /* ViewController.swift */,
+				78D5535523CF926300009ED1 /* adjustGoals.swift */,
 				784BF98C23CE401F0064DF30 /* Main.storyboard */,
 				784BF98F23CE40220064DF30 /* Assets.xcassets */,
 				784BF99123CE40220064DF30 /* LaunchScreen.storyboard */,
 				784BF99423CE40220064DF30 /* Info.plist */,
 			);
 			path = H2O;
+			sourceTree = "<group>";
+		};
+		EA6905F0CCF6701734A2B909 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				134B61F6A269EA69FBB0C60A /* Pods_H2O.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 784BF99723CE40220064DF30 /* Build configuration list for PBXNativeTarget "H2O" */;
 			buildPhases = (
+				18ABEE21FA54AFECA5F54124 /* [CP] Check Pods Manifest.lock */,
 				784BF97F23CE401F0064DF30 /* Sources */,
 				784BF98023CE401F0064DF30 /* Frameworks */,
 				784BF98123CE401F0064DF30 /* Resources */,
+				63E39F4BEBDBC4C9620CDC8B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,12 +162,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		18ABEE21FA54AFECA5F54124 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-H2O-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63E39F4BEBDBC4C9620CDC8B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-H2O/Pods-H2O-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-H2O/Pods-H2O-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-H2O/Pods-H2O-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		784BF97F23CE401F0064DF30 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				784BF98B23CE401F0064DF30 /* ViewController.swift in Sources */,
+				78D5535623CF926300009ED1 /* adjustGoals.swift in Sources */,
 				784BF98723CE401F0064DF30 /* AppDelegate.swift in Sources */,
 				784BF98923CE401F0064DF30 /* SceneDelegate.swift in Sources */,
 			);
@@ -282,6 +354,7 @@
 		};
 		784BF99823CE40220064DF30 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0E30678B76C48A200D50C14 /* Pods-H2O.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +372,7 @@
 		};
 		784BF99923CE40220064DF30 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFC2A523395FF993A7BBB6EB /* Pods-H2O.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

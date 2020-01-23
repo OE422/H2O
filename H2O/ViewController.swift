@@ -14,24 +14,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var completion: CircleProgressBar!
     @IBOutlet weak var adjustmentView: UIBarButtonItem!
     @IBOutlet weak var updateProgress: UIImageView!
-    @IBOutlet weak var consumptionInOz: UILabel!
-    @IBOutlet weak var goalInOz: UILabel!
     @IBOutlet weak var historyButton: UIBarButtonItem!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var goalInOz: UILabel!
+    var waterGoal:Double?
+    var waterConsumed:Double?
+    var oldDate:Calendar?
+    @IBOutlet weak var consumptionInOz: UILabel!
     let numOuncesTF = UITextField()
     let defaults = UserDefaults.standard
     var x = 0
-    
-    var waterGoal:Double?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.becomeFirstResponder()
 
-        
-        waterGoal = (defaults.object(forKey: "Goal") as! Double)
+        consumptionInOz.isHidden = true
+        goalInOz.isHidden = true
         view.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 0.0, green: 0.0, blue: 100.0, alpha: 0.5))
-        
         updateProgress.isUserInteractionEnabled = true
         let plusButtonTapped = UITapGestureRecognizer(target: self, action: #selector(updateProgressButtonPressed(sender:)))
         updateProgress.addGestureRecognizer(plusButtonTapped)
@@ -39,27 +38,61 @@ class ViewController: UIViewController, UITextFieldDelegate {
         numOuncesTF.delegate = self
         
         resetButton.addTarget(self, action: #selector(resetUserDefaults(sender:)), for: .touchUpInside)
+        resetButton.layer.cornerRadius = 5
         adjustmentView.target = self
         adjustmentView.action = #selector(goToAdjustGoals(sender:))
+        
+        historyButton.target = self
+        historyButton.action = #selector(viewHistory(sender:))
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        if self.defaults.object(forKey: "Progress") != nil
+        if self.defaults.object(forKey: "Goal") != nil
         {
-            let progress =  self.defaults.object(forKey: "Progress") as! Double / self.waterGoal!
-            self.completion.setProgress(CGFloat(progress), animated: true)
-            consumptionInOz.text = "\(self.defaults.object(forKey: "Progress") as! Double)"
-            goalInOz.text = "of \(Int(self.waterGoal!)) oz"
+            waterGoal = (self.defaults.object(forKey: "Goal") as! Double)
+//            waterConsumed = (self.defaults.object(forKey: "Progress") as! Double)
+            goalInOz.text = " / \(Double(self.waterGoal!)) oz"
+            goalInOz.sizeToFit()
+            goalInOz.isHidden = false
+            consumptionInOz.text = "\(waterConsumed ?? 0.0)"
+            consumptionInOz.isHidden = false
+            consumptionInOz.sizeToFit()
+            
+            if self.defaults.object(forKey: "Progress") != nil
+            {
+                waterConsumed = (self.defaults.object(forKey: "Progress") as! Double)
+                let progress =  self.defaults.object(forKey: "Progress") as! Double / self.waterGoal!
+                self.completion.setProgress(CGFloat(progress), animated: true)
+            }
         }
+//        if self.defaults.object(forKey: "Date") != nil
+//        {
+//            oldDate = (self.defaults.object(forKey: "Date") as! Calendar)
+//        }
+//        self.defaults.set(Calendar.current, forKey: "Date")
+//        if oldDate == nil
+//        {
+//            oldDate = Calendar.current
+//        }
+//        if oldDate != (self.defaults.object(forKey: "Date") as! Calendar)
+//        {
+//            self.defaults.set(nil, forKey: "Progress")
+//            self.completion.setProgress(CGFloat(0.0), animated: true)
+//            self.waterConsumed = nil
+//        }
+    }
+    @objc func viewHistory (sender: UIBarButtonItem)
+    {
+        performSegue(withIdentifier: "viewTheHistory", sender: self)
     }
     @objc func resetUserDefaults (sender: UIButton)
     {
-        let doYouWantToReset = UIAlertController(title: "Do you really want to reset your progress and water goal?", message: "Once reset, data cannot be restored.", preferredStyle: .alert)
+        let doYouWantToReset = UIAlertController(title: "Do you really want to reset your progress?", message: "Once reset, data cannot be restored.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Confirm", style: .default, handler:{action in
             self.defaults.set(nil, forKey: "Progress")
-            self.defaults.set(nil, forKey: "Goal")
             self.completion.setProgress(CGFloat(0.0), animated: true)
+            self.waterConsumed = nil
+            self.consumptionInOz.text = "\(self.waterConsumed ?? 0.0)"
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: {
@@ -95,14 +128,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let value:Double = Double(numOuncesUpdated.textFields![0].text!) ?? 0.0
                 if self.defaults.object(forKey: "Progress") == nil
                 {
+                    self.waterConsumed = value
                     self.defaults.set(value, forKey: "Progress")
                 }
                 else
                 {
-                    self.defaults.set(self.defaults.object(forKey: "Progress") as! Double + value, forKey: "Progress")
+                    self.waterConsumed! += value
+                    self.defaults.set(self.waterConsumed!, forKey: "Progress")
                 }
-                let progress = (value) / self.waterGoal!
+                let progress = (self.waterConsumed!) / self.waterGoal!
                 self.completion.setProgress(CGFloat(progress), animated: true)
+                self.consumptionInOz.text = "\(self.waterConsumed!)"
+                self.consumptionInOz.sizeToFit()
             })
             numOuncesUpdated.addAction(cancel)
             numOuncesUpdated.addAction(add)
